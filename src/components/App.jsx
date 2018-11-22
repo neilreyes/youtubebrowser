@@ -41,8 +41,8 @@ class App extends Component {
         return(
             <div>
                 <SearchBar />
-                <VideoList videos={this.state.videos}/>
                 <VideoDetail video={this.state.videos[0]}/>
+                <VideoList videos={this.state.videos}/>
             </div>
         )
     }
