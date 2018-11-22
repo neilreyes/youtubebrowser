@@ -8,12 +8,6 @@ import VideoDetail from './VideoDetail';
 
 const YOUTUBE_API_KEY = "AIzaSyC_vTCoR8PseScF4owFyskryB2kZ3jlz1M";
 
-const searchQuery = {
-    q: 'nodejs',
-    type: 'video',
-    videoType: 'any'
-}
-
 class App extends Component {
     constructor(props){
         super(props);
@@ -21,9 +15,26 @@ class App extends Component {
         this.state ={
             selectedVideo: null,
             videos: []
-        }
+        };
 
-        this.handleOnVideoSelect = this.handleOnVideoSelect.bind(this)
+        this.handleOnVideoSelect = this.handleOnVideoSelect.bind(this);
+        this.handleOnVideoSearch = this.handleOnVideoSearch.bind(this);
+
+    }
+    
+    handleOnVideoSelect(selectedVideo){
+        this.setState({
+            selectedVideo
+        })
+    }
+    
+    handleOnVideoSearch(term){
+        
+        const searchQuery = {
+            q: term,
+            type: 'video',
+            videoType: 'any'
+        }
 
         searchYoutube(
             YOUTUBE_API_KEY,
@@ -38,19 +49,13 @@ class App extends Component {
                     });
                 }
             }
-        )
-    }
-    
-    handleOnVideoSelect(selectedVideo){
-        this.setState({
-            selectedVideo
-        })
+        );
     }
 
     render(){
         return(
             <div>
-                <SearchBar />
+                <SearchBar onSearchTermChange={this.handleOnVideoSearch}/>
                 <VideoDetail video={this.state.selectedVideo}/>
                 <VideoList
                     videos={this.state.videos}
