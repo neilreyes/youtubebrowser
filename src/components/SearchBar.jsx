@@ -19,6 +19,7 @@ class SearchBar extends Component{
         this.setState({
             [name]: value,
         })
+        
     }
 
     render() {
