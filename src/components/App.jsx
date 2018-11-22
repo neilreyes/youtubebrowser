@@ -6,6 +6,9 @@ import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 
+// Utils
+import _ from 'lodash';
+
 const YOUTUBE_API_KEY = "AIzaSyC_vTCoR8PseScF4owFyskryB2kZ3jlz1M";
 
 class App extends Component {
