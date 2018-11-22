@@ -3,6 +3,7 @@ import searchYoutube from 'youtube-api-v3-search';
 
 // Components 
 import SearchBar from './SearchBar';
+import VideoList from './VideoList';
 
 const YOUTUBE_API_KEY = "AIzaSyC_vTCoR8PseScF4owFyskryB2kZ3jlz1M";
 
@@ -30,8 +31,6 @@ class App extends Component {
                     this.setState({
                         videos: result.items,
                     });
-
-                    console.log('Videos: ', this.state.videos);
                 }
             }
         )
@@ -41,6 +40,7 @@ class App extends Component {
         return(
             <div>
                 <SearchBar />
+                <VideoList videos={this.state.videos}/>
             </div>
         )
     }
