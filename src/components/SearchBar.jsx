@@ -8,10 +8,11 @@ class SearchBar extends Component{
             term: ''
         }
 
-        this.handleSearch = this.handleSearch.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-    handleSearch(e){
+    handleInputChange(e){
         const target = e.target;
         const name = target.name;
         const value = target.value;
@@ -19,21 +20,42 @@ class SearchBar extends Component{
         this.setState({
             [name]: value,
         })
+    }
 
+    handleFormSubmit(e){
+        e.preventDefault();
+        const value = this.state.term;
         this.props.onSearchTermChange(value);
+
+        this.setState({
+            term: '',
+        });
     }
 
     render() {
         return(
-            <div>
-                <input
-                    name="term"
-                    value={this.state.term}
-                    className="SearchBar"
-                    placeholder="Search term..."
-                    onChange={this.handleSearch}
-                />
-            </div>
+            <form
+                id="SearchBar"
+                onSubmit={this.handleFormSubmit}
+                className="form-inline"
+            >
+                <div className="form-group">
+                    <input
+                        name="term"
+                        value={this.state.term}
+                        className="SearchBar form-control"
+                        placeholder="Search term..."
+                        onChange={this.handleInputChange}
+                    />
+                </div>
+                <submit
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={this.handleFormSubmit}
+                >
+                    Search
+                </submit>
+            </form>
         );
     }
 }

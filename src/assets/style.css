@@ -1,3 +1,9 @@
 .list-group-item{
     cursor: pointer;
 }
+
+#SearchBar{
+    background-color: #000;
+    padding: 20px;
+    margin-bottom: 15px;
+}

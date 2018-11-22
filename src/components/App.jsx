@@ -22,6 +22,7 @@ class App extends Component {
 
         this.handleOnVideoSelect = this.handleOnVideoSelect.bind(this);
         this.handleOnVideoSearch = this.handleOnVideoSearch.bind(this);
+        this.renderVideoDetail = this.renderVideoDetail.bind(this);
 
     }
     
@@ -55,11 +56,20 @@ class App extends Component {
         );
     }
 
+    renderVideoDetail(){
+        if( this.state.selectedVideo !== null ){
+            return <VideoDetail video={this.state.selectedVideo}/>;
+        }
+    }
+
     render(){
+        
+
+        const videoSearch = _.debounce(term=>{this.handleOnVideoSearch(term)}, 300);
         return(
             <div>
-                <SearchBar onSearchTermChange={this.handleOnVideoSearch}/>
-                <VideoDetail video={this.state.selectedVideo}/>
+                <SearchBar onSearchTermChange={videoSearch}/>
+                {this.renderVideoDetail()}
                 <VideoList
                     videos={this.state.videos}
                     onVideoSelect={this.handleOnVideoSelect}
