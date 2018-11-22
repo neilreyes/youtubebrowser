@@ -23,6 +23,8 @@ class App extends Component {
             videos: []
         }
 
+        this.handleOnVideoSelect = this.handleOnVideoSelect.bind(this)
+
         searchYoutube(
             YOUTUBE_API_KEY,
             searchQuery, 
@@ -38,13 +40,22 @@ class App extends Component {
             }
         )
     }
+    
+    handleOnVideoSelect(selectedVideo){
+        this.setState({
+            selectedVideo
+        })
+    }
 
     render(){
         return(
             <div>
                 <SearchBar />
                 <VideoDetail video={this.state.selectedVideo}/>
-                <VideoList videos={this.state.videos}/>
+                <VideoList
+                    videos={this.state.videos}
+                    onVideoSelect={this.handleOnVideoSelect}
+                />
             </div>
         )
     }
